@@ -1,6 +1,6 @@
 {
   "name": "mushaf",
-  "version": "0.0.1",
+  "version": "0.0.3",
   "description": "A mushaf library",
   "main": "index.js",
   "scripts": {

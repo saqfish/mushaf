@@ -3,18 +3,8 @@ const mushafs = {
   susi: "abu_amr/susi",
 };
 
-const check = (check, r) => {
-  if (!check || !check.length) {
-    throw "Invalid mushaf data. Check your rawi selection!";
-    return null;
-  }
-  return r;
-};
-
 class Mushaf {
   constructor(r) {
-    this.c = 0;
-    this.j = 0;
     this.rawi = r;
     this.load(r);
   }
@@ -28,50 +18,36 @@ class Mushaf {
   load = (r) => {
     try {
       this.chapters = require(`./${mushafs[r]}/chapters.json`);
-      this.allVerses = [];
-      if (this.chapters) {
-        for (let cp of this.chapters) {
-          this.allVerses = this.allVerses.concat(cp.verses);
+      this.verses = require(`./${mushafs[r]}/verses.json`);
+      this.raw = require(`./${mushafs[r]}/raw.json`);
+      this.parts = require(`./${mushafs[r]}/sections.json`);
+      this.sections = [];
+      if (this.parts) {
+        for (let p of this.parts) {
+          this.sections = this.sections.concat(p);
         }
       }
-      this.pages = require(`./${mushafs[r]}/pages.json`);
-      this.raw = require(`./${mushafs[r]}/raw.json`);
-      this.verses = require(`./${mushafs[r]}/verses.json`);
-      this.sections = require(`./${mushafs[r]}/sections.json`);
     } catch (e) {
-      this.chapters = this.allVerses = this.pages = this.raw = this.verses = this.sections = [];
+      this.chapters = this.verses = this.raw = this.sections = [];
     }
   };
 
-  surahs = () => check(this.chapters, this.chapters);
-  surah = (n) => {
-    this.c = n - 1;
-    const c = this.chapters?.[n - 1];
-    return check(this.chapters, c);
-  };
+  surahs = () => this.chapters;
+  surah = (n) => this.chapters?.[n - 1];
   chapter = (n) => this.surah(n);
 
-  ayahs = () => check(this.allVerses, this.allVerses);
-  ayah = (c, n) => {
-    const v = this.chapters?.[c]?.verses?.[n - 1];
-    return check(this.chapters, v);
-  };
+  ayahs = () => this.verses;
+  ayah = (c, n) => this.chapters?.[c]?.verses?.[n - 1];
   verse = (c, n) => this.ayah(c, n);
 
-  juz = (n) => {
-    this.j = n - 1;
-    return check(this.chapters, this.sections[n - 1]);
-  };
-  juzs = () => check(this.sections, this.sections);
+  juz = (n) => this.parts[n - 1];
+  juzs = () => this.parts;
 
-  maqras = (j) => check(this.sections, this.sections[j - 1]);
-  maqra = (j, m) =>
-    check(this.sections, this.sections ? this.sections[j - 1][m - 1] : null);
+  maqras = () => this.sections;
+  maqra = (j, m) => this.parts[j - 1][m - 1];
   section = (j, m) => this.maqra(j, m);
 
-  page = (p) => check(this.pages, this.pages[p - 1]);
-  line = (p, l) => check(this.pages, this.pages[p - 1][l - 1]);
-  rawLine = (l) => check(this.raw, this.raw[l - 1]);
+  rawLine = (l) => this.raw[l - 1];
 }
 
 const mushaf = new Mushaf("duri");

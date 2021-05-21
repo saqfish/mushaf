@@ -1,36 +1,35 @@
-## Usage
-`const { mushaf, mushafs } = require("mushaf");`
-
-```js
-mushaf.surah() \\ Array of surahs/chapters
-mushaf.surah(1) \\ Surah 1 data
-mushaf.ayahs() \\ Array of ayas/verses
-mushaf.ayah(1) \\ Ayah 1 of last selected surah (or 1 by default)
-mushaf.juzs() \\ Array of all 30 juz
-mushaf.juz(1) \\ Juz 1
-mushaf.maqras() \\ All 8 maqras (1/8 of a juz) of the last selected juz (or 1 by default)
-mushaf.maqra(2,1) \\ Maqra 1 of juz 2
-mushaf.page(1) \\ Array of page 1 lines
-mushaf.line(2,1) \\ Line 1 of page 2
-mushaf.rawLine(1) \\ Line 1 of all pages of the mushaf (combined)
+## Installation
+```shell 
+npm i mushaf
 ```
 
-## Sample data
+## Usage
 ```js
-// Surah
-mushaf.surah(1)
-{
-	"title": "سُورَةُ الفَلَقِ",
-	"numChapter": 113,
-	"numVerses": 5,
-	"verses": [
-		"قُلۡ أَعُوذُ بِرَبِّ ٱلۡفَلَقِ",
-		"مِن شَرِّ مَا خَلَقَ",
-		"وَمِن شَرِّ غَاسِقٍ إِذَا وَقَبَ",
-		"وَمِن شَرِّ ٱلنَّفَّٰثَٰتِ فِي ٱلۡعُقَدِ",
-		"وَمِن شَرِّ حَاسِدٍ إِذَا حَسَدَ"
-	]
-}
+const { mushaf, mushafs } = require("mushaf"); // node require
+import { mushaf, mushafs } from "mushaf"; // es6 import
+```
+
+```js
+mushaf.surah() // Array of surahs/chapters
+mushaf.surah(1) // Surah 1 data
+mushaf.chapter(1) // Surah 1 data
+
+mushaf.ayahs() // Array of total ayahs/verses of mushaf
+mushaf.ayah(2,1) // Ayah 1 of surah 2
+mushaf.verse(2,1) // Verse 1 of chapter 2
+
+
+mushaf.juzs() // Array of all 30 juz
+mushaf.juz(1) // Juz 1
+
+mushaf.maqras() // All 8 maqras (1/8 of a juz) of the last selected juz (or 1 by default)
+mushaf.maqra(2,1) // Maqra 1 of juz 2
+mushaf.section(2,1) // Section 1 of juz 2
+
+mushaf.page(1) // Array of page 1 lines
+mushaf.line(2,1) // Line 1 of page 2
+
+mushaf.rawLine(1) // Raw line 1 of all pages of the mushaf (combined)
 ```
 
 ```js

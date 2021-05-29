@@ -1,56 +1,27 @@
-const mushafs = {
-  duri: "abu_amr/duri",
-  susi: "abu_amr/susi",
+const mushaf = ({ chapters, verses, raw, parts, sections }) => {
+  return {
+    // Data
+    chapters,
+    verses,
+    raw,
+    parts,
+    sections,
+
+    surahs: () => chapters,
+    surah: (n) => chapters?.[n - 1],
+    ayahs: () => verses,
+    ayah: (c, n) => chapters?.[c]?.verses?.[n - 1],
+    juz: (n) => parts[n - 1],
+    juzs: () => parts,
+    maqras: () => sections,
+    maqra: (j, m) => parts[j - 1][m - 1],
+    rawLine: (l) => raw[l - 1],
+
+    // English aliases
+    chapter: (n) => surah(n),
+    verse: (c, n) => ayah(c, n),
+    section: (j, m) => maqra(j, m),
+  };
 };
 
-class Mushaf {
-  constructor(r) {
-    this.rawi = r;
-    this.load(r);
-  }
-  get rawi() {
-    return this.rawi;
-  }
-  set rawi(r) {
-    this.load(r);
-  }
-
-  load = (r) => {
-    try {
-      this.chapters = require(`./${mushafs[r]}/chapters.json`);
-      this.verses = require(`./${mushafs[r]}/verses.json`);
-      this.raw = require(`./${mushafs[r]}/raw.json`);
-      this.parts = require(`./${mushafs[r]}/sections.json`);
-      this.sections = [];
-      if (this.parts) {
-        for (let p of this.parts) {
-          this.sections = this.sections.concat(p);
-        }
-      }
-    } catch (e) {
-      this.chapters = this.verses = this.raw = this.sections = [];
-    }
-  };
-
-  surahs = () => this.chapters;
-  surah = (n) => this.chapters?.[n - 1];
-  chapter = (n) => this.surah(n);
-
-  ayahs = () => this.verses;
-  ayah = (c, n) => this.chapters?.[c]?.verses?.[n - 1];
-  verse = (c, n) => this.ayah(c, n);
-
-  juz = (n) => this.parts[n - 1];
-  juzs = () => this.parts;
-
-  maqras = () => this.sections;
-  maqra = (j, m) => this.parts[j - 1][m - 1];
-  section = (j, m) => this.maqra(j, m);
-
-  rawLine = (l) => this.raw[l - 1];
-}
-
-const mushaf = new Mushaf("duri");
-
-module.exports.mushaf = mushaf;
-module.exports.mushafs = mushafs;
+module.exports = mushaf;

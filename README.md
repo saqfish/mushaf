@@ -3,11 +3,22 @@
 npm i mushaf
 ```
 
-## Usage
-```js
-const { mushaf, mushafs } = require("mushaf"); // node require
-import { mushaf, mushafs } from "mushaf"; // es6 import
+## Qari/Rawi install
+
+In order to use the mushaf, you must choose a Qari & Rawi. For example abu_amr/duri:
+
+```shell 
+Install the qari 2 rawis
+npm i abu_amr
 ```
+
+```js
+import mushaf from 'mushaf'
+import abu_amr from 'abu_amr'
+
+const quran = mushaf(abu_amr);
+```
+
 
 ```js
 mushaf.surah() // Array of surahs/chapters

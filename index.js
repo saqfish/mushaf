@@ -1,3 +1,5 @@
+const { getJuzIndex, getMaqraIndex, generatePageNumbers } = require("./util");
+
 const mushaf = ({ chapters, verses, raw, parts, sections }) => {
   return {
     // Data
@@ -21,6 +23,18 @@ const mushaf = ({ chapters, verses, raw, parts, sections }) => {
     chapter: (n) => surah(n),
     verse: (c, n) => ayah(c, n),
     section: (j, m) => maqra(j, m),
+
+    // Exposed util
+    generatePages: (maqra, offset) => {
+      let pages = generatePageNumbers(
+        sections[maqra].page.start + offset,
+        sections[maqra].page.end + offset
+      );
+      return pages.flat();
+    },
+    getJuzIndex,
+    getMaqraIndex,
+
   };
 };
 

@@ -10,6 +10,8 @@
 	 - [Maqra & Section](#maqra--section)
 	 - [Page](#page)
 	 - [Raw](#raw)
+	 - [Useful methods](#useful-methods)
+
 - [Source & licensing](#raw)
 
 
@@ -43,19 +45,38 @@ const quran = mushaf(abu_amr);
 
 ```js
 mushaf.surah() // Array of surahs/chapters
-mushaf.surah(1) // Surah 1 data
-mushaf.chapter(1) // Surah 1 data
+mushaf.surah(surah) // Surah n data
+mushaf.chapter(surah) // Surah n data
+```
+
+```js
+// Example
+mushaf.surah(113)
+
+// return
+{
+	"title": "سُورَةُ الفَلَقِ",
+	"numChapter": 113,
+	"numVerses": 5,
+	"verses": [
+		"قُلۡ أَعُوذُ بِرَبِّ ٱلۡفَلَقِ",
+		"مِن شَرِّ مَا خَلَقَ",
+		"وَمِن شَرِّ غَاسِقٍ إِذَا وَقَبَ",
+		"وَمِن شَرِّ ٱلنَّفَّٰثَٰتِ فِي ٱلۡعُقَدِ",
+		"وَمِن شَرِّ حَاسِدٍ إِذَا حَسَدَ"
+	]
+}
 ```
 
 ###  Ayah & Verse
 ```js
 mushaf.ayahs() // Array of total ayahs/verses of mushaf
-mushaf.ayah(2,1) // Ayah 1 of surah 2
-mushaf.verse(2,1) // Verse 1 of chapter 2
+mushaf.ayah(surah,ayah) // Ayah n of surah n
+mushaf.verse(chapter,verse) // Verse n of chapter n
 ```
 ```js
 // Example
-mushaf.ayah(3)
+mushaf.ayah(1, 3)
 
 // return
 ملك يوم الدينِ
@@ -64,18 +85,19 @@ mushaf.ayah(3)
 ###  Juz
 ```js
 mushaf.juzs() // Array of all 30 juz
-mushaf.juz(1) // Juz 1
+mushaf.juz(juz) // Juz n
 ```
 
 ###  Maqra & Section
 ```js
 mushaf.maqras() // All 8 maqras (1/8 of a juz) of the last selected juz (or 1 by default)
-mushaf.maqra(2,1) // Maqra 1 of juz 2
-mushaf.section(2,1) // Section 1 of juz 2
+mushaf.maqra(juz,maqra) // Maqra n of juz n
+mushaf.section(juz,section) // Section n of juz n
 ```
 ```js
 // Example
 mushaf.maqra(30,1)
+
 // return
 {
   verse: { text: 'عم يتساءلون', number: 5653 },
@@ -83,38 +105,9 @@ mushaf.maqra(30,1)
 }
 ```
 
-###  Page
-```js
-mushaf.page(1) // Array of page 1 lines
-mushaf.line(2,1) // Line 1 of page 2
-```
-```js
-// Example
-mushaf.page(3)
-
-// return
-[
-  'إن الذين كفروا سواء عليهم ءانذرتهم أم لم تنذرهم ',
-  'لا يؤمنون ٥ ختم الله على قلوبهم وعلى سمعهم وعلى ',
-  'أبصرهم غشوة ولهم عذاب عظيم ٦ ومن الناس ',
-  'من يقول ءامنا بالله وباليوم الأخر وما هم بمؤمنين ٧ ',
-  'يخدعون الله والذين ءامنوا وما يخدعون إلا أنفسهم ',
-  'وما يشعرون ٨ في قلوبهم مرض فزادهم الله مرضا ',
-  'ولهم عذاب أليم بما كانوا يكذبون ٩ وإذا قيل لهم ',
-  'لا تفسدوا في الأرض قالوا إنما نحن مصلحون ١٠ ألا إنهم ',
-  'هم المفسدون ولكن لا يشعرون ١١ وإذا قيل لهم ',
-  'ءامنوا كما ءامن الناس قالوا أنؤمن كما ءامن السفهاء ',
-  'الا إنهم هم السفهاء ولكن لا يعلمون ١٢ وإذا لقوا ',
-  'الذين ءامنوا قالوا ءامنا وإذا خلوا إلى شيطينهم قالوا إنا ',
-  'معكم إنما نحن مستهزءون ١٣ الله يستهزي بهم ويمدهم ',
-  'في طغينهم يعمهون ١٤ أولئك الذين اشتروا الضللة ',
-  'بالهدى فما ربحت تجرتهم وما كانوا مهتدين ١٥ '
-]
-```
-
 ###  Raw
 ```js
-mushaf.rawLine(1) // Raw line 1 of all pages of the mushaf (combined)
+mushaf.rawLine(line) // Raw line n of all pages of the mushaf (combined)
 ```
 
 ```js
@@ -124,6 +117,14 @@ mushaf.line(1, 3)
 // return
 الحمد لله رب العلمين ١
 ```
+
+### Useful methods
+
+```js
+ generatePages(maqra, offset) // Get page numbers from n maqra with offset
+ getJuzIndex(maqra) // Get juz by maqra number
+ getMaqraIndex(maqra) // Get maqra index
+ ```
 
 
 ## Source & licensing

@@ -8,7 +8,6 @@
 	 -  [Ayah & Verse](#ayah--verse)
 	 - [Juz](#juz)
 	 - [Maqra & Section](#maqra--section)
-	 - [Page](#page)
 	 - [Raw](#raw)
 	 - [Useful methods](#useful-methods)
 
@@ -26,7 +25,8 @@ npm i mushaf
 
 ### Qari / Rawi
 
-In order to use the mushaf, you must choose a Qari & Rawi. For example abu_amr/duri:
+Install a Qari set. Check the [Qari/Rawi](https://github.com/saqfish/mushafs) list. <br/>
+For example `abu_amr`:
 
 ```shell 
 npm i abu_amr
@@ -35,10 +35,13 @@ npm i abu_amr
 ## Usage
 
 ```js
-import mushaf from 'mushaf'
-import abu_amr from 'abu_amr'
+import data from 'mushaf'
+import {duri, susi} from 'abu_amr'
 
-const quran = mushaf(abu_amr);
+let mushaf;
+mushaf = data(duri);
+mushaf = data(susi);
+
 ```
 
 ###  Surah & Chapter

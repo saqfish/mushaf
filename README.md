@@ -30,14 +30,14 @@ In order to use the mushaf, you must choose a Qari & Rawi. For example abu_amr/d
 npm i abu_amr
 ```
 
+## Usage
+
 ```js
 import mushaf from 'mushaf'
 import abu_amr from 'abu_amr'
 
 const quran = mushaf(abu_amr);
 ```
-
-## Usage
 
 ###  Surah & Chapter
 

@@ -27,7 +27,6 @@ npm i mushaf
 In order to use the mushaf, you must choose a Qari & Rawi. For example abu_amr/duri:
 
 ```shell 
-Install the qari 2 rawis
 npm i abu_amr
 ```
 

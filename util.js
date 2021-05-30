@@ -7,7 +7,7 @@ const generatePageNumbers = (start, end) => {
   return arr;
 };
 
-export {
+module.exports = {
   getJuzIndex,
   getMaqraIndex,
   generatePageNumbers,

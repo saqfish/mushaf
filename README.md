@@ -26,21 +26,19 @@ npm i mushaf
 ### Qari / Rawi
 
 Install a Qari set. Check the [Qari/Rawi](https://github.com/saqfish/mushafs) list. <br/>
-For example `abu_amr`:
 
 ```shell 
-npm i abu_amr
+npm i @saqfish/asim
 ```
 
 ## Usage
 
 ```js
 import data from 'mushaf'
-import {duri, susi} from 'abu_amr'
+import { hafs } from '@saqfish/asim'
 
 let mushaf;
-mushaf = data(duri);
-mushaf = data(susi);
+mushaf = data(hafs);
 
 ```
 

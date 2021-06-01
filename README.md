@@ -1,3 +1,7 @@
+A mushaf library for various qira'at and position data.
+
+[Demo](https://saqfish.github.io/mushaf/)
+
 ## Contents
 
 - [Installation](#installation)
